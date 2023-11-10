@@ -1,6 +1,6 @@
 Back-End (Johny, Maxl, Lisa-Maria, Tobi)
 - Java Spring Boot ✔️
-- Server Controller (CRUD Operations mit REST API)
+- Server Controller (CRUD Operations mit REST API) ✔️
 - Datenbank
 - QueryController
 
