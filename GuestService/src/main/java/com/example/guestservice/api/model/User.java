@@ -1,38 +1,37 @@
 package com.example.guestservice.api.model;
 
 public class User {
-
-    private int id;
     private String name;
-    private int age;
+    private String email;
+    private String pw;
 
-    public User(int id, String name, int age) {
-        this.id = id;
+    public User(String name, String email, String pw) {
         this.name = name;
-        this.age = age;
-    }
-
-    public int getId() {
-        return id;
+        this.email = email;
+        this.pw = pw;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getPw() {
+        return pw;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
     }
 }
