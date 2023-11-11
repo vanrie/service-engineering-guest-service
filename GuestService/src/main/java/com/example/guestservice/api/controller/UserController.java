@@ -2,6 +2,7 @@ package com.example.guestservice.api.controller;
 
 import com.example.guestservice.api.model.User;
 import com.example.guestservice.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,24 +18,24 @@ public class UserController{
         this.userService = userService;
     }
 
-    @GetMapping("/user")
-    public User getUser(@RequestParam String email){
+    @GetMapping("/getUserById/{email}")
+    public User getUser(@PathVariable String email){
         return userService.getUser(email);
     }
 
-    @PostMapping
+    @PostMapping("/createUser")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.createUser(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{email}")
+    @PutMapping("/updateUser/{email}")
     public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User user) {
         User updatedGuest = userService.updateUser(email, user);
         return ResponseEntity.ok(updatedGuest);
     }
 
-    @DeleteMapping("/{email}")
+    @DeleteMapping("/deleteUser/{email}")
     public ResponseEntity<Void> deleteUser(@PathVariable String email) {
         userService.deleteUser(email);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

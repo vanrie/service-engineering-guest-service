@@ -1,22 +1,27 @@
 package com.example.guestservice.service;
 
+import com.example.guestservice.api.db.QueryRepository;
 import com.example.guestservice.api.model.Event;
-import com.example.guestservice.api.model.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class EventService {
 
+    @Autowired
+    private QueryRepository repository;
     private List<Event> eventList;
 
     public EventService(){
         eventList = new ArrayList<>();
     }
 
-    public Event getEvent(String name){
+    public Event getEvent(String name) {
         for(Event event: eventList){
-            if (name==event.getName()){
+            if (name==event.getName()) {
                 return event;
             }
         }
@@ -26,31 +31,41 @@ public class EventService {
     public Event createEvent(Event event) {
         for(Event event1: eventList){
             if(event1.getName().equals(event.getName())) {
-                System.out.println("event already exists");
+                System.out.println("Event already exists");
                 return null;
             }
         }
         eventList.add(event);
+        repository.createEvent(event);
+        System.out.println("Event added successfully");
         return event;
     }
 
     public Event updateEvent(String name, Event event) {
-        for(Event event1 : eventList){
-            if(event1.getName().equals(event.getName())) {
-                eventList.remove(event1);
+        for(Event oldEvent : eventList){
+            if(oldEvent.getName().equals(name)) {
+                eventList.remove(oldEvent);
                 eventList.add(event);
+                repository.updateEvent(event, oldEvent);
+                System.out.println("Event updated successfully");
+                return event;
             }
         }
-        System.out.println("User don't exists");
-        return event;
+        System.out.println("Event doesn't exist");
+        return null;
     }
 
     public void deleteEvent(String name) {
         for(Event event : eventList){
             if(event.getName().equals(event.getName())){
                 eventList.remove(event);
+                repository.deleteEvent(event);
+                System.out.println("Event deleted successfully");
+                return;
             }
         }
+        System.out.println("Event doesn't exist");
+        return;
     }
     /*
     public Event addUserToEvent(Integer userId, Integer eventId) {
