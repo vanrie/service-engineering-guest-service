@@ -3,12 +3,14 @@ package com.example.guestservice.api.controller;
 import com.example.guestservice.api.model.User;
 import com.example.guestservice.service.UserService;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(path = "api/user")
 public class UserController{
 
     private UserService userService;
@@ -40,6 +42,7 @@ public class UserController{
         userService.deleteUser(email);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     /*
     @PostMapping("/{userId}/join-event/{eventId}")
     public ResponseEntity<User> joinEvent(@PathVariable Integer userId, @PathVariable Integer eventId) {

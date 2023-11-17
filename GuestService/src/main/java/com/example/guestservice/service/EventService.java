@@ -3,6 +3,7 @@ package com.example.guestservice.service;
 import com.example.guestservice.api.db.QueryRepository;
 import com.example.guestservice.api.model.Event;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ public class EventService {
 
     public EventService(){
         eventList = new ArrayList<>();
+    }
+
+    public List<Event> getAllEvents(){
+        return eventList;
     }
 
     public Event getEvent(String name) {

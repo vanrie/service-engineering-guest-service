@@ -24,6 +24,10 @@ public class UserService {
         return userList;
     }
 
+    public List<User> getAllUsers(){
+        return userList;
+    }
+
     public User getUser(String email){
         for(User user: userList) {
             if (email==user.getEmail()) {

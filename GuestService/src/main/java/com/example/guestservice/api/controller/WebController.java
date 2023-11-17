@@ -1,5 +1,6 @@
 package com.example.guestservice.api.controller;
 
+import com.example.guestservice.service.EventService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.ui.Model;
@@ -12,27 +13,27 @@ import java.util.HashMap;
 @RestController
 public class WebController {
     /*
-    @GetMapping(path = "/")
-    public String index() {
-        return "external";
-    }
+        @GetMapping(path = "/")
+        public String index() {
+            return "external";
+        }
 
-    @GetMapping(path = "/customers")
-    public String customers(Principal principal, Model model) {
-       /* createUser();
-        model.addAttribute("customers", customerDAO.findAll());
+        @GetMapping(path = "/customers")
+        public String customers(Principal principal, Model model) {
+            addCustomers();
+            model.addAttribute("customers", customerDAO.findAll());
 
-        model.addAttribute("username", principal.getName());
+            model.addAttribute("username", principal.getName());
 
-        return "customers";
-    }
+            return "customers";
+        }
+
     */
-
     @GetMapping(path = "/")
     public HashMap index() {
         // get a successful user login
-        OAuth2User user = ((OAuth2User)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return new HashMap(){{
+        OAuth2User user = ((OAuth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        return new HashMap() {{
             put("hello", user.getAttribute("name"));
             put("your email is", user.getAttribute("email"));
         }};
@@ -41,10 +42,8 @@ public class WebController {
 
     @GetMapping(path = "/unauthenticated")
     public HashMap unauthenticatedRequests() {
-        return new HashMap(){{
+        return new HashMap() {{
             put("this is ", "unauthenticated endpoint");
         }};
     }
-
-
 }

@@ -1,37 +1,57 @@
 package com.example.guestservice.api.model;
 
 public class User {
-    private String name;
+    private String username;
     private String email;
-    private String pw;
+    private String password;
+    private String firstname;
+    private String lastName;
 
-    public User(String name, String email, String pw) {
-        this.name = name;
+    public User(String username, String email, String password, String firstname, String lastName) {
+        this.username = username;
         this.email = email;
-        this.pw = pw;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastName = lastName;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPw() {
-        return pw;
+    public String getPassword() {
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPw(String pw) {
-        this.pw = pw;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

@@ -61,7 +61,7 @@ public class QueryRepository {
     
     //CREATE/UPDATE Queries:
 	public void createUser(User user) {
-		String sql = "INSERT INTO t_user(email, name, pw) VALUES('" + user.getEmail() + "', '" + user.getName() + "', '" + user.getPw() + "');";
+		String sql = "INSERT INTO t_user(email, name, pw) VALUES('" + user.getEmail() + "', '" + user.getFirstname() + "', '" + user.getPassword() + "');";
 		jdbcTemplate.execute(sql);
 	};
 	
