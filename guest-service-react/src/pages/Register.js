@@ -1,7 +1,28 @@
 import { TEInput, TERipple } from "tw-elements-react";
+import { useKeycloak } from "@react-keycloak/web";
 
 function Register() {
+  const { keycloak, initialized } = useKeycloak();
+
+  const newAccount = {
+    username: null,
+    email: null,
+    password: null, 
+    firstName: null,
+    lastName: null
+  };
+  function handleChange(event) {
+    newAccount[event.target.name] =  event.target.value;
+    console.log(newAccount);
+
+  }
+
+  function createUserInDatabase(){
+    console.log(newAccount);
+  }
+
   return (
+    
     <section className="h-screen">
       <div className="h-full">
         <div className="g-6 flex h-full flex-wrap items-center justify-center  mx-7">
@@ -16,12 +37,21 @@ function Register() {
           <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
             <form>
 
-
+            <TEInput
+                type="text"
+                label="User Name"
+                size="lg"
+                className="mb-6"
+                name="username"
+                onChange={handleChange}
+              ></TEInput>
               <TEInput
                 type="email"
                 label="Email address"
                 size="lg"
                 className="mb-6"
+                name="email"
+                onChange={handleChange}
               ></TEInput>
 
               <TEInput
@@ -29,6 +59,26 @@ function Register() {
                 label="Password"
                 className="mb-6"
                 size="lg"
+                name="password"
+                onChange={handleChange}
+              ></TEInput>
+
+              <TEInput
+                type="text"
+                label="First Name"
+                className="mb-6"
+                size="lg"
+                name="firstName"
+                onChange={handleChange}
+              ></TEInput>
+
+              <TEInput
+                type="text"
+                label="Last Name"
+                className="mb-6"
+                size="lg"
+                name="lastName"
+                onChange={handleChange}
               ></TEInput>
 
               <div className="text-center lg:text-left">
@@ -42,10 +92,11 @@ function Register() {
                 </TERipple>
 
                 <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
-                  Alreaady have an account?{" "}
+                  Already have an account?{" "}
                   <a
-                    href="/"
                     className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
+                    onClick={() => keycloak.login()}
+
                   >
                     Login
                   </a>
