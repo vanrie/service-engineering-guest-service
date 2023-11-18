@@ -1,5 +1,11 @@
 --create schema    
-    
+
+--DROP TABLE's:
+--DROP TABLE bt_participation;
+--DROP TABLE t_event;
+--DROP TABLE t_user;
+
+
 CREATE TABLE t_user (
 	username VARCHAR(255) PRIMARY KEY,
 	email VARCHAR(255),

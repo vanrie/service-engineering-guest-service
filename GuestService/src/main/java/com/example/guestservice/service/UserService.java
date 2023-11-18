@@ -1,19 +1,13 @@
 package com.example.guestservice.service;
 
 import com.example.guestservice.api.db.QueryRepository;
-import com.example.guestservice.api.model.Credentials;
 import com.example.guestservice.api.model.User;
 
-import org.keycloak.admin.client.resource.UsersResource;
-import org.keycloak.representations.account.UserRepresentation;
-import org.keycloak.representations.idm.CredentialRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import com.example.guestservice.api.security.KeycloakConfig;
 
 @Service
 public class UserService {
@@ -22,21 +16,18 @@ public class UserService {
     private QueryRepository repository;
     private List<User> userList;
 
-    public UserService(){
-        userList = new ArrayList<>();
-    }
-
-    public List<User> getUserList() {
-        return userList;
+    public UserService() {
+        //userList = repository.getAllUsers();
+    	userList = new ArrayList<User>();
     }
 
     public List<User> getAllUsers(){
         return userList;
     }
 
-    public User getUser(String email){
+    public User getUserById(String username) {
         for(User user: userList) {
-            if (email==user.getEmail()) {
+            if (user.getUsername().equals(username)) {
                 return user;
             }
         }
@@ -44,24 +35,24 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        for(User user1: userList){
-            if(user1.getEmail().equals(user.getEmail())) {
+        for(User user1: userList) {
+            if(user1.getUsername().equals(user.getUsername())) {
                 System.out.println("User already exists");
-                return null;
+                return user1;
             }
         }
-        userList.add(user);
         repository.createUser(user);
+        userList.add(user);
         System.out.println("User added successfully");
         return user;
     }
     
-    public User updateUser(String email, User user) {
-        for(User oldUser : userList){
-            if(oldUser.getEmail().equals(user.getEmail())) {
+    public User updateUser(String username, User user) {
+        for(User oldUser: userList){
+            if(oldUser.getUsername().equals(username)) {
+               repository.updateUser(user, oldUser);
                userList.remove(oldUser);
                userList.add(user);
-               repository.updateUser(user, oldUser);
                System.out.println("User updated successfully");
                return user;
             }
@@ -70,11 +61,11 @@ public class UserService {
         return null;
     }
 
-    public void deleteUser(String email) {
+    public void deleteUser(String username) {
         for(User user : userList){
-            if(user.getEmail().equals(email)){
-                userList.remove(user);
-                repository.deleteUser(user);
+            if(user.getEmail().equals(username)){
+            	repository.deleteUser(user);
+            	userList.remove(user);
                 System.out.println("User deleted successfully");
                 return;
             }
@@ -82,17 +73,4 @@ public class UserService {
         System.out.println("User doesn't exist");
         return;
     }
-    /*
-    public User joinEvent(Integer userId, Integer eventId) {
-        User user = userRepository.findById(userId).orElse(null);
-        Event event = eventRepository.findById(eventId).orElse(null);
-
-        if (user != null && event != null) {
-            user.getEvents().add(event);
-            userRepository.save(user);
-        }
-
-        return user;
-    }
-    */
 }
