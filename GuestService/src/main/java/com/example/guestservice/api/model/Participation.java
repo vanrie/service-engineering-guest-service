@@ -2,24 +2,24 @@ package com.example.guestservice.api.model;
 
 public class Participation {
 
-	private String userEmail;
+	private String username;
 	private String eventName;
 	
-	public Participation(String userEmail, String eventName) {
-		this.userEmail = userEmail;
+	public Participation(String username, String eventName) {
+		this.username = username;
 		this.eventName = eventName;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
+	public String getUsername() {
+		return username;
 	}
 
 	public String getEventName() {
 		return eventName;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public void setEventName(String eventName) {

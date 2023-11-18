@@ -1,13 +1,19 @@
 package com.example.guestservice.service;
 
 import com.example.guestservice.api.db.QueryRepository;
+import com.example.guestservice.api.model.Credentials;
 import com.example.guestservice.api.model.User;
 
+import org.keycloak.admin.client.resource.UsersResource;
+import org.keycloak.representations.account.UserRepresentation;
+import org.keycloak.representations.idm.CredentialRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import com.example.guestservice.api.security.KeycloakConfig;
 
 @Service
 public class UserService {
@@ -49,7 +55,7 @@ public class UserService {
         System.out.println("User added successfully");
         return user;
     }
-
+    
     public User updateUser(String email, User user) {
         for(User oldUser : userList){
             if(oldUser.getEmail().equals(user.getEmail())) {
