@@ -13,12 +13,11 @@ function App() {
     <ReactKeycloakProvider authClient={keycloak}>
      <BrowserRouter>
        <Routes>
-           <Route path="/" element={<Login />} />
-           <Route path="register" element={<Register />} />
-           <Route path="home" element={
-              // <PrivateRoute>
-               <Home />
-              // </PrivateRoute>
+           <Route path="/register" element={<Register />} />
+           <Route path="/" element={
+               <PrivateRoute>
+                   <Home />
+               </PrivateRoute>
            } />
        </Routes>
      </BrowserRouter>

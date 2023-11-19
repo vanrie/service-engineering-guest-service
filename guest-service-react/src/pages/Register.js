@@ -1,8 +1,8 @@
 import { TEInput, TERipple } from "tw-elements-react";
-//import { useKeycloak } from "@react-keycloak/web";
+import { useKeycloak } from "@react-keycloak/web";
 
 function Register() {
-  //const { keycloak, initialized } = useKeycloak();
+  const { keycloak, initialized } = useKeycloak();
 
   const newAccount = {
     username: null,
@@ -21,9 +21,10 @@ function Register() {
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        mode: "no-cors",
         body: newAccount
       };
-      fetch('http://localhost:8080/createUser', requestOptions)
+      fetch('http://localhost:8081/createUser', requestOptions)
           .then(response => response.json())
           .then(data => this.setState({ postId: data.id }));
   }
@@ -102,7 +103,7 @@ function Register() {
                   Already have an account?{" "}
                   <a
                     className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
-                    //onClick={() => keycloak.login()}
+                    onClick={() => keycloak.login()}
 
                   >
                     Login
