@@ -10,6 +10,7 @@ CREATE TABLE t_user (
 	password VARCHAR(255),
 	first_name VARCHAR(255),
 	last_name VARCHAR(255),
+	isAdmin BOOLEAN
 );
 
 CREATE TABLE t_event (
