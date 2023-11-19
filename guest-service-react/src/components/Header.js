@@ -1,8 +1,21 @@
+import { TEInput, TERipple } from "tw-elements-react";
+
 function Header() {
     return (
-      <div>
-        <h1>This is the header</h1>
-      </div>
+        <header className="mx-6 flex flex-col">
+            <TERipple rippleColor="light" className="flex justify-end">
+                <button
+                    className="mt-5 mb-5 flex justify-end bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    Logout
+                </button>
+            </TERipple>
+            <h1 className="mb-4 mt-5 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+                Manage Your Events like a Pro
+            </h1>
+            <p className="mb-6 text-lg text-center font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+                With this application you will never miss a single Event. Manage everything in one go. Try it out now!
+            </p>
+        </header>
     );
   }
    export default Header;

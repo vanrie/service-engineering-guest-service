@@ -1,8 +1,8 @@
 import { TEInput, TERipple } from "tw-elements-react";
-import { useKeycloak } from "@react-keycloak/web";
+//import { useKeycloak } from "@react-keycloak/web";
 
 function Register() {
-  const { keycloak, initialized } = useKeycloak();
+  //const { keycloak, initialized } = useKeycloak();
 
   const newAccount = {
     username: null,
@@ -17,12 +17,18 @@ function Register() {
 
   }
 
-  function createUserInDatabase(){
-    console.log(newAccount);
+  function registerNewUser(){
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: newAccount
+      };
+      fetch('http://localhost:8080/createUser', requestOptions)
+          .then(response => response.json())
+          .then(data => this.setState({ postId: data.id }));
   }
 
   return (
-    
     <section className="h-screen">
       <div className="h-full">
         <div className="g-6 flex h-full flex-wrap items-center justify-center  mx-7">
@@ -85,6 +91,7 @@ function Register() {
                 <TERipple rippleColor="light">
                   <button
                     type="button"
+                    onClick={() => registerNewUser()}
                     className="inline-block rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                   >
                     Register
@@ -95,7 +102,7 @@ function Register() {
                   Already have an account?{" "}
                   <a
                     className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
-                    onClick={() => keycloak.login()}
+                    //onClick={() => keycloak.login()}
 
                   >
                     Login

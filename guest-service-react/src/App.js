@@ -4,6 +4,7 @@ import Register from "./pages/Register"
 import Home from "./pages/Home"
 import { ReactKeycloakProvider } from "@react-keycloak/web";
 import keycloak from "./keycloak";
+import Header from "./components/Header";
 import PrivateRoute from "./helpers/PrivateRoute";
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
            <Route path="register" element={<Register />} />
            <Route path="home" element={
               // <PrivateRoute>
-                          <Home />
+               <Home />
               // </PrivateRoute>
            } />
        </Routes>
