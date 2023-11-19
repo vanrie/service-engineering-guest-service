@@ -6,6 +6,8 @@ function List(user) {
 
     const { keycloak } = useKeycloak();
     let userName = '';
+    let isAdmin = true;
+
     let events = [
         {
             name: 'testevent',
@@ -27,8 +29,22 @@ function List(user) {
 
     React.useEffect(() => {
         getAllEvents();
+        console.log(keycloak)
+
         keycloak.loadUserInfo().then((info) => {
+            console.log(info);
             userName = info.preferred_username;
+
+            const requestOptions = {
+                method: 'GET',
+                mode: "no-cors",
+            };
+
+            fetch('http://localhost:8081/getUserById/' + userName, requestOptions)
+                .then(response => {
+                    isAdmin = response.isAdmin;
+                });
+
         });
         console.log(userName)
     });
@@ -36,7 +52,7 @@ function List(user) {
     function getAllEvents(){
         const requestOptions = {
             method: 'GET',
-            mode: "no-cors"
+            mode: "no-cors",
         };
 
         fetch('http://localhost:8081/getAllEvents', requestOptions)
@@ -106,12 +122,16 @@ function List(user) {
                                         )}
 
 
-                                        <td className="whitespace-nowrap px-6 py-4" onClick={deleteEvent(event)}>
-                                            <button
-                                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-                                                Delete
-                                            </button>
-                                        </td>
+                                        {
+                                            isAdmin ? (                                        <td className="whitespace-nowrap px-6 py-4" onClick={deleteEvent(event)}>
+                                                <button
+                                                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                            ) : null
+                                        }
+
 
                                     </tr>
                                 )

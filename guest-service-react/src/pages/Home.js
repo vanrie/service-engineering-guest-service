@@ -3,9 +3,12 @@ import List from "../components/List";
 import CreateForm from "../components/CreateForm"
 import { TEInput, TERipple, TETextarea } from "tw-elements-react";
 import React from "react";
+import { useKeycloak } from "@react-keycloak/web";
+
 
 function Home() {
     const [showModal, setShowModal] = React.useState(false);
+    const { keycloak } = useKeycloak();
 
     let newEvent = {
         name: '',
@@ -18,9 +21,15 @@ function Home() {
     }
     function createNewEvent(){
         console.log(newEvent);
+        console.log(keycloak);
+        console.log(keycloak.idToken);
+
         const requestOptions = {
             method: 'POST',
             mode: "no-cors",
+            headers: {
+                'Authorization': 'Bearer' + keycloak.refreshToken
+            },
             body: newEvent
         };
 
