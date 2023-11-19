@@ -3,6 +3,8 @@ package com.example.guestservice.api.controller;
 import com.example.guestservice.api.model.Event;
 import com.example.guestservice.service.EventService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +20,18 @@ public class EventController {
         this.eventService = eventService;
     }
 
+    @GetMapping("/getAllEvents")
+    public List<Event> getAllEvents(){
+        return eventService.getAllEvents();
+    }
+    
     @GetMapping("/getEventById/{name}")
     public Event getEvent(@PathVariable String name){
-        return eventService.getEvent(name);
+        return eventService.getEventById(name);
     }
 
     @PostMapping("/createEvent")
-    public ResponseEntity<Event> createUEvent(@RequestBody Event event) {
+    public ResponseEntity<Event> createEvent(@RequestBody Event event) {
         Event createdEvent = eventService.createEvent(event);
         return new ResponseEntity<>(createdEvent, HttpStatus.CREATED);
     }
@@ -41,17 +48,5 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-	/*
-	@PostMapping("/{eventId}/add-user/{userId}")
-	public ResponseEntity<Event> addUserToEvent(@PathVariable Integer eventId, @PathVariable Integer userId) {
-	    Event event = eventService.addUserToEvent(userId, eventId);
-	
-	    if (event != null) {
-	        return ResponseEntity.ok(event);
-	    } else {
-	        return ResponseEntity.notFound().build();
-	    }
-	}
-	 */
 
 
