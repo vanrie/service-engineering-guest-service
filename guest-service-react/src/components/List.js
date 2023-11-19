@@ -90,9 +90,9 @@ function List(user) {
                                         </td>
 
                                         {event.isParticipant ? (
-                                            <td className="whitespace-nowrap px-6 py-4" onClick={signUpForEvent(event)}>
+                                            <td className="whitespace-nowrap px-6 py-4" onClick={deleteParticipation(event)}>
                                                 <button
-                                                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                                                     Unregister
                                                 </button>
                                             </td>
@@ -167,7 +167,7 @@ function List(user) {
 }
 
 
-function signUpForEvent(event, username){
+function signUpForEvent(event){
 /*
     const requestOptions = {
         method: 'POST',
@@ -181,14 +181,16 @@ function signUpForEvent(event, username){
 }
 
 function deleteEvent(event){
-    /*
+
     const requestOptions = {
         method: 'DELETE',
     };
+    /*
     fetch('http://localhost:8081/deleteEvent/' + event.name, requestOptions)
-        .then(response => response.json())
-        .then(data => this.setState({ postId: data.id }));
-        */
+        .then(response =>
+        console.log(response);
+        );*/
+
 
 }
 

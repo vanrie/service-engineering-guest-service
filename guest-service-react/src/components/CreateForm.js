@@ -12,6 +12,7 @@ function CreateForm() {
         newEvent[event.target.name] =  event.target.value;
     }
     function createNewEvent(){
+        console.log(newEvent);
         const requestOptions = {
             method: 'POST',
             mode: "no-cors",
