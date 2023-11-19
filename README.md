@@ -27,8 +27,8 @@ GuestService Funktionen:
 
 Docker Setup Anleitung für Keycloak:
 1. Terminal öffnen (Windows + R -> "cmd" -> Enter)
-2. docker run --name guestservice-keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:22.0.0 start-dev
-3. http://localhost:8080/auth/ -> username: "admin", passwort: "admin"
+2. docker run --name guestservice-keycloak -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:22.0.0 start-dev
+3. http://localhost:8080/ -> username: "admin", passwort: "admin"
 4. Create Realm (guestservice-db)
 5. Create Client (login-client)
 6. Optional: Create user for testing
