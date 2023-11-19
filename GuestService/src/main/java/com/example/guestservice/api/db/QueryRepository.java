@@ -72,8 +72,10 @@ public class QueryRepository {
 		Date d = (Date) event.getDate();
 		String dateString = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getYear() + " " + d.getHours() + ":"
 				+ d.getMinutes();
-		String sql = "INSERT INTO t_event(name, date_) VALUES('" + event.getName() + "', TO_DATE('" + dateString
-				+ "', 'DD-MM-YYYY HH24:MI'));";
+		String sql = "INSERT INTO t_event(name, date_, description) VALUES('" + event.getName() +
+				"', " +
+				"TO_DATE('" + dateString
+				+ "', 'DD-MM-YYYY HH24:MI'), "+ event.getDescription() + " );";
 		jdbcTemplate.execute(sql);
 	};
 

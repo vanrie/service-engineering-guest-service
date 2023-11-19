@@ -29,12 +29,6 @@ function CreateForm() {
 
     return (
         <div className="flex flex-col">
-            <h1 className="mb-4 mt-5 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-                Create your events
-            </h1>
-            <p className="mb-6 text-lg text-center font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-                Just add infos to your event here, so everybody can join!
-            </p>
             <div className="block max-w-sm rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
                 <form>
                     <TEInput

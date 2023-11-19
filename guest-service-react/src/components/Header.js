@@ -1,11 +1,18 @@
 import { TEInput, TERipple } from "tw-elements-react";
+import CreateForm from './CreateForm'
+import { useKeycloak } from "@react-keycloak/web";
 
 function Header() {
+    const { keycloak } = useKeycloak();
+
     return (
-        <header className="mx-6 flex flex-col">
-            <TERipple rippleColor="light" className="flex justify-end">
+        <header className="mx-6 flex flex-col items-center">
+            <TERipple rippleColor="light" className=" justify-end">
                 <button
-                    className="mt-5 mb-5 flex justify-end bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    className="mt-5 mb-5 flex justify-end bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                    onClick={() => keycloak.logout()}
+
+                >
                     Logout
                 </button>
             </TERipple>
@@ -15,6 +22,13 @@ function Header() {
             <p className="mb-6 text-lg text-center font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
                 With this application you will never miss a single Event. Manage everything in one go. Try it out now!
             </p>
+            {/*
+            <button
+                className="bg-transparent hover:bg-blue-500 hover:text-blue-500 text-blue-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Create Event
+            </button>/*/}
+
+            <CreateForm></CreateForm>
         </header>
     );
   }

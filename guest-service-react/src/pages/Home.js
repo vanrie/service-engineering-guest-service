@@ -23,8 +23,7 @@ function Home() {
     return (
         <div>
           <Header></Header>
-            <List role="user"></List>
-            <CreateForm></CreateForm>
+            <List></List>
         </div>
     );
   }
