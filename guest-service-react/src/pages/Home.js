@@ -20,10 +20,6 @@ function Home() {
         newEvent[event.target.name] =  event.target.value;
     }
     function createNewEvent(){
-        console.log(newEvent);
-        console.log(keycloak);
-        console.log(keycloak.idToken);
-
         const requestOptions = {
             method: 'POST',
             mode: "no-cors",
@@ -45,9 +41,11 @@ function Home() {
           <Header></Header>
             <List></List>
             <button
-                style={{marginLeft: '50%'}}
                 onClick={() => setShowModal(true)}
-                className="bg-transparent hover:bg-blue-500 hover:text-blue-500 text-blue-700 font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                style={{margin: "0 45%",
+                    minWidth: "200px"}}
+                className="bg-transparent hover:bg-blue-500 hover:text-blue-500 text-blue-700 font-semibold py-2
+                px-4 border border-blue-500 hover:border-transparent rounded">
                 Create Event
             </button>
 
@@ -56,7 +54,11 @@ function Home() {
                         <div className="flex flex-col">
                             <div
                                 style={{backgroundColor: 'rgba(1, 1, 1, 0.2)'}}
-                                className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 shadow-md z-50 outline-none focus:outline-none fixed top-0 bottom-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                className="justify-center items-center flex overflow-x-hidden
+                                 overflow-y-auto fixed inset-0 shadow-md
+                                z-50 outline-none focus:outline-none fixed top-0 bottom-0
+                                right-0 left-0 z-50 justify-center
+                                items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                 <form className="bg-white rounded p-5" style={{minWidth: '400px'}}>
                                     <TERipple rippleColor="light" className="w-full">
                                         <button style={{padding: '0 0 20px 100%'}}
@@ -98,6 +100,7 @@ function Home() {
                                     <TERipple rippleColor="light" className="w-full">
                                         <button
                                             type="button"
+
                                             className="inline-block rounded w-full bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                                             onClick={() => createNewEvent()}
 
