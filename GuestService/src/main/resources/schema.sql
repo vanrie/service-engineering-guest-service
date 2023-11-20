@@ -1,6 +1,4 @@
---create schema    
 
---DROP TABLE's:
 --DROP TABLE bt_participation;
 --DROP TABLE t_event;
 --DROP TABLE t_user;
@@ -12,11 +10,13 @@ CREATE TABLE t_user (
 	password VARCHAR(255),
 	first_name VARCHAR(255),
 	last_name VARCHAR(255),
+	isAdmin BOOLEAN
 );
 
 CREATE TABLE t_event (
 	name VARCHAR(255) PRIMARY KEY,
 	date_ DATE	--format: 'DD-MM-YYYY HH24:MI'
+	description VARCHAR(1000)
 );
 
 CREATE TABLE bt_participation (
